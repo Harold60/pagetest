@@ -135,26 +135,63 @@
       }
     }
 
+    /* 📱 Diseño responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      input[type="text"] {
+        font-size: 0.9em;
+        width: 100%;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 12px 25px;
+      }
+
+      .final img {
+        max-width: 90%;
+      }
+
+      .heart {
+        width: 15px;
+        height: 15px;
+      }
+
+      .heart::before,
+      .heart::after {
+        width: 15px;
+        height: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
- <!-- 🎵 Música de fondo (sin autoplay) -->
-<audio id="audioFondo" loop>
-  <source src="The Other Woman.mp3" type="audio/mpeg">
-  Tu navegador no soporta audio HTML5.
-</audio>
+  <!-- 🎵 Música de fondo -->
+  <audio id="audioFondo" loop>
+    <source src="The Other Woman.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
 
-
-<!-- Pantalla 1: Ingreso de nombre -->
-<div class="container" id="pantalla-nombre">
-  <h1>Holis 💕</h1>
-  <p>Antes de seguir ¿Cómo ute c llama? 😠</p>
-  <input type="text" id="nombreInput" placeholder="Escribe tu nombre aquí..." />
- 
-  <br>
-  <button onclick="mostrarMensaje()">Continuar</button>
-</div>
+  <!-- Pantalla 1: Ingreso de nombre -->
+  <div class="container" id="pantalla-nombre">
+    <h1>Holis 💕</h1>
+    <p>Antes de seguir ¿Cómo ute c llama? 😠</p>
+    <input type="text" id="nombreInput" placeholder="Escribe tu nombre aquí..." />
+    <br>
+    <button onclick="mostrarMensaje()">Continuar</button>
+  </div>
 
   <!-- Pantalla 2: Mensaje romántico -->
   <div class="container hidden" id="pantalla-mensaje">
@@ -167,58 +204,49 @@
   <!-- Pantalla 3: Final con gif y fotos -->
   <div class="container hidden" id="pantalla-final">
     <div class="final">
-      <h1>sabia q dirias q sí 💘</h1>
-      <img src="tumblr_5bbc22fac69987481e447b119cffbf1b_0934e3fc_1280.gif" alt="GIF de amor" style="max-width: 200px; border-radius: 15px; margin-bottom: 10px;" />
-      <img src="balma.jpg" alt="Imagen 1" style="max-width: 200px; border-radius: 15px; margin-bottom: 10px;" />
+      <h1>sabía q dirías q sí 💘</h1>
+      <img src="tumblr_5bbc22fac69987481e447b119cffbf1b_0934e3fc_1280.gif" alt="GIF de amor" />
+      <img src="balma.jpg" alt="Imagen 1" />
     </div>
   </div>
 
-  <!-- 💗 Corazones flotando (solo se activan en pantalla-mensaje) -->
+  <!-- 💗 Corazones flotando -->
   <div id="corazones" class="hidden"></div>
 
   <script>
     function mostrarMensaje() {
-  const nombre = document.getElementById("nombreInput").value.trim();
-  if (nombre === "") {
-    alert(" escribe tu nombre 😠");
-    return;
-  }
+      const nombre = document.getElementById("nombreInput").value.trim();
+      if (nombre === "") {
+        alert(" escribe tu nombre 😠");
+        return;
+      }
 
-  // Reproducir música al pasar a la segunda pantalla
-  const audio = document.getElementById("audioFondo");
-  audio.play().catch(() => {
-    console.log("El navegador bloqueó la reproducción automática.");
-  });
-
-  document.getElementById("pantalla-nombre").classList.add("hidden");
-  document.getElementById("pantalla-mensaje").classList.remove("hidden");
-
-  const mensaje = `
-    ${nombre}, desde que te conocí, algo en mí cambió. Tu forma de ser, tu sonrisa, tu racismo y q tenemos el mismo nivel d autismo 
-    esa mirada tan tuya... me hacen sentir una conexión que no había sentido nunca.<br><br>
-    Siento que contigo el mundo tiene más color, más calma. Como si estuviéramos conectados desde antes, como si el destino ya te hubiera traído a mí.<br><br>
-    Eres única, especial, y no solo por fuera… me encantas por todo lo que eres. 
-    Quisiera construir algo contigo… si tú también lo sientes así…`;
-
-  document.getElementById("mensajePersonalizado").innerHTML = mensaje;
-
-  generarCorazones();
-}
-
-   function reproducirMusica() {
       const audio = document.getElementById("audioFondo");
-       audio.play().catch(() => {
-       alert("Activa el sonido de tu navegador 😅");
-  });
-}
+      audio.play().catch(() => {
+        console.log("El navegador bloqueó la reproducción automática.");
+      });
+
+      document.getElementById("pantalla-nombre").classList.add("hidden");
+      document.getElementById("pantalla-mensaje").classList.remove("hidden");
+
+      const mensaje = `
+        ${nombre}, desde que te conocí, algo en mí cambió. Tu forma de ser, tu sonrisa, tu racismo y q tenemos el mismo nivel d autismo 
+        esa mirada tan tuya... me hacen sentir una conexión que no había sentido nunca.<br><br>
+        Siento que contigo el mundo tiene más color, más calma. Como si estuviéramos conectados desde antes, como si el destino ya te hubiera traído a mí.<br><br>
+        Eres única, especial, y no solo por fuera… me encantas por todo lo que eres. 
+        Quisiera construir algo contigo… si tú también lo sientes así…`;
+
+      document.getElementById("mensajePersonalizado").innerHTML = mensaje;
+
+      generarCorazones();
+    }
 
     function mostrarFinal() {
       document.getElementById("pantalla-mensaje").classList.add("hidden");
       document.getElementById("pantalla-final").classList.remove("hidden");
-      document.getElementById("corazones").classList.add("hidden"); // detenemos corazones
+      document.getElementById("corazones").classList.add("hidden");
     }
 
-    // 💖 Corazones flotando
     function generarCorazones() {
       const contenedor = document.getElementById("corazones");
       contenedor.classList.remove("hidden");
