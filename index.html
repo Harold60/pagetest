@@ -11,15 +11,10 @@
 
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to bottom right, #ffc0cb, #ffe4e1);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
       overflow-y: auto;
-      padding: 20px;
     }
 
     .container {
@@ -30,10 +25,10 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       max-width: 600px;
       width: 100%;
+      margin: 40px auto;
       animation: fadeIn 1s ease;
       position: relative;
       z-index: 1;
-      margin: 40px auto;
     }
 
     h1 {
@@ -246,7 +241,7 @@
       document.getElementById("pantalla-final").classList.remove("hidden");
       document.getElementById("corazones").classList.add("hidden");
 
-      // 💥 Vibración si es compatible
+      // Vibración si es compatible
       if (navigator.vibrate) {
         navigator.vibrate([300, 100, 300]);
       }
